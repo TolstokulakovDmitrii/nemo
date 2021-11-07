@@ -15,23 +15,6 @@
 </head>
 <body class="antialiased">
 
-<!--Start Login section-->
-@if (Route::has('login'))
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-        @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-            @endif
-        @endauth
-    </div>
-@endif
-
-<!--End Login section-->
-
 
 <!--Nav bar start-->
 <nav class="navbar navbar-expand-md navbar-light bg-dark">
@@ -40,42 +23,64 @@
 
     <div class="collapse navbar-collapse justify-content-between" id="nav">
         <ul class ="navbar-nav">
-            <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="{{ '/'}}">Home</a></li>
+            <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="{{ '/'}}">Dashboard</a></li>
             <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="{{ 'skills'}}">Skills</a></li>
-            <li class="nav-item dropdown" data-toggle="dropdown"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="#">Projects</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Project 1</a>
-                    <a class="dropdown-item" href="#">Project 2</a>
-                    <a class="dropdown-item" href="#">Project 3</a>
-                    <a class="dropdown-item" href="#">Project 4</a>
-                </div>
-            </li>
-            <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="#">About me</a></li>
-            <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="#">Contact</a></li>
+            {{--            <li class="nav-item dropdown" data-toggle="dropdown"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="#">Projects</a>--}}
+            {{--                <div class="dropdown-menu">--}}
+            {{--                    <a class="dropdown-item" href="#">Project 1</a>--}}
+            {{--                    <a class="dropdown-item" href="#">Project 2</a>--}}
+            {{--                    <a class="dropdown-item" href="#">Project 3</a>--}}
+            {{--                    <a class="dropdown-item" href="#">Project 4</a>--}}
+            {{--                </div>--}}
+            {{--            </li>--}}
+            {{--            <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="#">About me</a></li>--}}
+            {{--            <li class="nav-item"><a class= "nav-link text-light text-uppercase font-weight-bold px-3" href="#">Contact</a></li>--}}
         </ul>
 
     </div>
     <!--Form section start-->
-{{--    <form class ="form-inline ml-3">--}}
-{{--        <div class ="input-group">--}}
-{{--            <input type="text" class ="form-control" placeholder="search">--}}
-{{--            <div class = "input-group-append">--}}
-{{--                <button type="button" class="btn"><i class="fas fa-search"></i></button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </form>--}}
+    {{--    <form class ="form-inline ml-3">--}}
+    {{--        <div class ="input-group">--}}
+    {{--            <input type="text" class ="form-control" placeholder="search">--}}
+    {{--            <div class = "input-group-append">--}}
+    {{--                <button type="button" class="btn"><i class="fas fa-search"></i></button>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </form>--}}
     </div>
+    <div>
+        <!--Start Login section-->
+        @if (Route::has('login'))
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class= "nav-link text-light text-uppercase font-weight-bold px-3">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}" "nav-link text-light text-uppercase font-weight-bold px-3">Log in</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" "nav-link text-light text-uppercase font-weight-bold px-3">Register</a>
+                    @endif
+                @endauth
+            </div>
+    @endif
+
+    <!--End Login section-->
+    </div>
+
 </nav>
 <!--Form section start-->
 <!--Nav bar end-->
 <!----------Header section end---------->
 <!--Content section start-->
 
+<!--Breadcrumbs section-->
+<section class="breadcrumb text-white bg-secondary">
+    <h3>Dashboard page</h3>
+</section>
+<!--Breadcrumbs section-->
 
 <!--Skills section start-->
-<section class="breadcrumb text-white bg-secondary">
-    <h3>Skills page</h3>
-</section>
+
 <section class="bg-light p-5">
     <div class="container-fluid">
         <div class="row">
@@ -106,7 +111,6 @@
     </div>
 </section>
 <!--Skills section end-->
-
 
 <!--Progress section start-->
 <section class="p-5">
@@ -144,8 +148,6 @@
 </section>
 <!--Progress section end-->
 
-
-<!--Skills section end-->
 
 <!--Footer section start-->
 <footer class="bg-secondary">

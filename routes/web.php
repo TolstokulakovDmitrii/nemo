@@ -25,3 +25,7 @@ Route::get('/home', function () {
 Route::get('/skills', function () {
     return view('skills');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
