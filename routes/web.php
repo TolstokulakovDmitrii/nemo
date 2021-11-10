@@ -26,6 +26,10 @@ Route::get('/skills', function () {
     return view('skills');
 });
 
+//Category Controller
+
+Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
