@@ -1,13 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Greatings, <b>{{ Auth::user()->name }}</b>
+        <h2 class="font-semisolid text-xl text-gray-800 leading-tight">
+            Category list: <b> </b>
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="container">
+                 <div class="row">
+
+                     <div class="col-md-8">
+                         <div class="card">
+                             <div class="card-header">
+                                 Categories
+                             </div>
+                         </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -30,7 +37,29 @@
 
                     </tbody>
                 </table>
+
+                     </div>
+
+                     <div class="col-md-4">
+                         <div class="card">
+                             <div class="card-header">Categories</div>
+                         </div>
+                         <form action = "{{ route('store.category') }}" method ="POST">
+                             @csrf
+                             <div class="mb-3">
+                                 <label for="exampleInputEmail1" class="form-label"></label>
+                                 <input type="text" name="category_name" class="form-control" id="text" aria-describedby="emailHelp">
+                                @error('category_name')
+                                 <span class="text-danger">{{ $message }}</span>
+                                 @enderror
+                             </div>
+
+
+                             <button type="submit" class="btn btn-success width=100%;">Add</button>
+                         </form>
+                </div>
             </div>
         </div>
     </div>
+
 </x-app-layout>
