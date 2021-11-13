@@ -8,9 +8,13 @@
     <div class="py-12">
                 <div class="container">
                  <div class="row">
-
                      <div class="col-md-8">
                          <div class="card">
+                            @if(session('success'))
+                             <div class="alert alert-danger" role="alert">
+                                    <strong>{{ session('success') }}</strong>
+                             </div>
+                            @endif
                              <div class="card-header">
                                  Categories
                              </div>
@@ -19,22 +23,24 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">E-mail</th>
+                        <th scope="col">Category_Name</th>
                         <th scope="col">Created At</th>
                     </tr>
                     </thead>
                     <tbody>
-
-
+                    @php($i = 1)
+                    @foreach($categories as $category)
                         <tr>
-                            <th scope="row"></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <th scope="row">{{ $i++ }}</th>
+                            <td>{{ $category->category_name}}</td>
+
+                            @if($category->created_at == NULL)
+                                <span class="text-danger">No date set in DB</span>
+                            @else
+                            <td>{{ $category->created_at->diffForHumans() }}</td>
+                            @endif
                         </tr>
-
-
+                    @endforeach
                     </tbody>
                 </table>
 
