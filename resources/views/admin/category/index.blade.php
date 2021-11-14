@@ -23,15 +23,17 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Who's created</th>
                         <th scope="col">Category_Name</th>
                         <th scope="col">Created At</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @php($i = 1)
+
                     @foreach($categories as $category)
                         <tr>
-                            <th scope="row">{{ $i++ }}</th>
+                            <th scope="row">{{ $categories->firstItem()+$loop->index}}</th>
+                            <td>{{ $category->user->name}}</td>
                             <td>{{ $category->category_name}}</td>
 
                             @if($category->created_at == NULL)
@@ -43,7 +45,7 @@
                     @endforeach
                     </tbody>
                 </table>
-
+                {{ $categories->links()  }}
                      </div>
 
                      <div class="col-md-4">
@@ -59,8 +61,6 @@
                                  <span class="text-danger">{{ $message }}</span>
                                  @enderror
                              </div>
-
-
                              <button type="submit" class="btn btn-success width=100%;">Add</button>
                          </form>
                 </div>
