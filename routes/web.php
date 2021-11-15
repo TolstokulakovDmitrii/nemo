@@ -30,10 +30,15 @@ Route::get('/skills', function () {
 });
 
 //Category Controller
-
+//view
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
-
+//add
 Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
+//edit
+Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
+Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
+//delete
+Route::get('/softdelete/category/{id}', [CategoryController::class, 'SoftDelete']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();
