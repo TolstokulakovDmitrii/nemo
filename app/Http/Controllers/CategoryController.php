@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
     public function AddCat(Request $request){
         $validatedData = $request->validate([
-            'category_name' => 'required|unique:categories|max:255',
+            'category_name' => 'required|unique:brands|max:255',
 
         ],
             [
@@ -45,17 +45,13 @@ class CategoryController extends Controller
         }
 
             public function Edit($id){
-                 $categories = Category::find($id);
+                $categories = Category::find($id);
                 $categories = DB::table('categories')->where('id',$id)->first();
                 return view('admin.category.edit',compact('categories'));
 
             }
 
             public function Update(Request $request ,$id){
-//                 $update = Category::find($id)->update([
-//                     'category_name' => $request->category_name,
-//                     'user_id' => Auth::user()->id
-//                 ]);
 
                 $data = array();
                 $data['category_name'] = $request->category_name;
@@ -71,5 +67,14 @@ class CategoryController extends Controller
                 return Redirect()->back()->with('success','Category Soft Delete Successfully');
             }
 
+            public function Restore($id){
+                    $delete = Category::withTrashed()->find($id)->restore();
+                    return Redirect()->back()->with('success','Category Restore Successfully');
+                }
+
+        public function Delete($id){
+            $delete = Category::onlyTrashed()->find($id)->forceDelete();
+            return Redirect()->back()->with('success','Category Permanently Deleted');
+        }
 
 }
