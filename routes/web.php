@@ -48,9 +48,12 @@ Route::get('/softdelete/category/{id}', [CategoryController::class, 'SoftDelete'
 Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 //delete
 Route::get('/delete/category/{id}', [CategoryController::class, 'Delete']);
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/master
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();
